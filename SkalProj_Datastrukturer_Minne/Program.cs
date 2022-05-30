@@ -3,7 +3,7 @@
 namespace SkalProj_Datastrukturer_Minne
 {
     class Program
-    {
+    {   
         /// <summary>
         /// The main method, vill handle the menues for the program
         /// </summary>
@@ -72,13 +72,44 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+            while(true)
+            { 
+             
+            List<string> theList = new List<string>();
+            string input = Console.ReadLine();
+            char nav = input[0];
+            string value = input.Substring(1);
 
-            //switch(nav){...}
-        }
+            switch(nav)
+                {
+                    case '+':
+                        theList.Add(value);
+                        Console.WriteLine("Count is : " + theList.Count);                           //Svar på frågor
+                        Console.WriteLine(" Capacity is : " + theList.Capacity);                    //Count är alltid lägre än Capacity.
+                                                                                                    //Medans element läggs på tills Count överstiger Capacity då förändras och ökar Capacity.
+                        break;                                                                      //Capacity är antalet element som listan kan lagra medans count är det befintliga antalet element i listan.
+                        case '-':                                                                   
+                        theList.Remove(value);
+                        Console.WriteLine("Count is : " + theList.Count);
+                        Console.WriteLine(" Capacity is : " + theList.Capacity);
+                        break;
+
+                        case '0':
+                        Environment.Exit(0);
+                        Main();
+                        break;
+
+                    default:
+                    Console.WriteLine("Plese enter som valid input + or -");
+                    break;
+                    }
+            }
+            }
+
+                    
+      
+                
+        
 
         /// <summary>
         /// Examines the datastructure Queue
@@ -90,6 +121,47 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+           
+            while(true){
+                
+                Queue my_queue = new Queue();
+            
+                switch(my_queue)
+            {
+                case 1:
+                    my_queue.Enqueue();
+                    foreach (var item in my_queue)
+                        Console.WriteLine(item);
+                    break;
+
+                    case 2:
+                    my_queue.Dequeue();
+                    foreach (var item in my_queue)
+                        Console.WriteLine(item);
+                    break;
+
+                    case '0':
+                        Environment.Exit(0);
+                        Main();
+                        break;
+
+                    default:
+                    Console.WriteLine("Plese enter name to queue");
+                    break;
+
+                    if(!my_queue.IsEmpty())
+                    case 1: ("Kalle", "Greta");
+                    case 2:"Kalle";
+                    case 1:"Stina";
+                    case 2: "Greta";
+                    case 1: "Olle";
+                    
+                    }
+
+
+            }
+            
+
         }
 
         /// <summary>
@@ -102,7 +174,80 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+
+            while(true)
+            {
+                Stack my_stack = new Stack();
+
+                switch (my_stack)
+                {
+                    case 1: my_stack.Push();
+                        foreach (var item in my_stack)
+                            Console.WriteLine(item);
+                        break;
+
+                        case 2: my_stack.Pop();
+                        foreach (var item in my_stack)
+                            Console.WriteLine(item);
+                        break;
+
+                        case 0:
+                        Environment.Exit(0);
+                        Main();
+                        break ;
+
+                        default:
+                        Console.WriteLine("Plese enter name to stack");
+                        break ;
+
+                        if(!my_stack.IsEmpty())
+
+                            case 1: ("Kalle", "Greta");
+                            case 2:"Kalle";
+                            case 1:"Stina";
+                            case 2: "Greta";
+                            case 1: "Olle";
+                }
+            }
         }
+
+        static void ReverseText(string str)
+        {
+                     
+                        for(int i = 0; i < str.Length; ++i)
+                        {
+                            if(str[i] != ' ')
+                            {
+                                my_stack.Push(str[i]);
+                            }
+                            else
+                            {
+                                while(my_stack.Count > 0)
+                                    Console.WriteLine(my_stack.Pop());
+                            }
+                            Console.Write(" ");
+                        }
+
+                        while(my_stack.Count > 0)
+                        {
+                            Console.WriteLine(my_stack.Pop());
+                        }
+        }
+
+         
+        
+        static Boolean isMatchingPair(char character1, char character2)
+            { 
+            
+
+            if(character1 == '(' && character2 == ')')
+                return true;
+            else if(character1 == '{' && character2 == '}')
+                return true;
+             else if(character1 == '[' && character2 == ']')
+                return true;
+            else return false;
+            }
 
         static void CheckParanthesis()
         {
@@ -112,8 +257,56 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
 
-        }
+           
 
+            char[] exp;
+
+            Stack<char> st = new Stack<char>();
+
+            //Traverse the given expresssion to check matching bracket
+            for(int i = 0; i < exp.Length; i++)
+            {
+                //if the exp[i] is a starting bracket then pusch it
+                if(exp[i] == '{' || exp[i] == ')' || exp[i] == ']')
+                    st.Push(exp[i]);
+
+                //if exp[i] is an ending bracket
+                //then pop from stack and check if the
+                // popped bracket is a matching pair
+                if(exp[i] == '}' || exp[i] == ')' || exp[i] == ']')
+                {
+                    //if we see an ending bracket withot a pair then return false
+                    if(st.Count == 0)
+                    { return false;}
+
+                    //Pop the top element from stack, if it is not a pair
+                    //brckets of character then there is a mismatch.
+                    else if(!isMatchingPair(st.Pop(), exp[i]))
+                    {
+                        return false;
+                    }
+                  }           
+                }
+            
+
+        //if there is something left in expression then thereis a starting bracket without
+        //a closing bracket
+        if(st.Count == 0)
+            return true; //balances
+
+            else{
+            return false; // not balances
+           
+           
+            }
+        }
+        
+        
     }
 }
 
+
+        
+       
+    
+    
